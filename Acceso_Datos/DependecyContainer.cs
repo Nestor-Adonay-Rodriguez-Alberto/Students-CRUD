@@ -12,6 +12,8 @@ namespace Acceso_Datos
             // Inyeccion:
             services.AddDbContext<MyDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("Cadena_Conexion")));
 
+            // Registrando Las Clases:
+            services.AddScoped<RolDAL>();
 
             return services;
         }
