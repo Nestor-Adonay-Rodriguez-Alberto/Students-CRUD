@@ -29,6 +29,8 @@ namespace Entidades
         [Required(ErrorMessage ="Es Obligatorio El Email")]
         public string Gmail { get; set; }
 
+        public byte[]? Fotografia {  get; set; }
+
 
 
         // Referencia Tabla Materia:
