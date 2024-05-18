@@ -14,6 +14,7 @@ namespace Logica_Negocio
             services.AddScoped<RolBL>();
             services.AddScoped<ProfesorBL>();
             services.AddScoped<MateriaBL>();
+            services.AddScoped<EstudianteBL>();
 
             return services;
         }

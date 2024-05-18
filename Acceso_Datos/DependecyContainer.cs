@@ -16,6 +16,7 @@ namespace Acceso_Datos
             services.AddScoped<RolDAL>();
             services.AddScoped<ProfesorDAL>();
             services.AddScoped<MateriaDAL>();
+            services.AddScoped<EstudianteDAL>();
 
             return services;
         }
