@@ -22,7 +22,9 @@ namespace Acceso_Datos
         // Manda Un Objeto Encontrado:
         public async Task<Estudiante> Obtener_PorId(Estudiante estudiante)
         {
-            Estudiante? Objeto_Obtenido = await _MyDBContext.Estudiantes.FirstOrDefaultAsync(x => x.Id_Estudiante == estudiante.Id_Estudiante);
+            Estudiante? Objeto_Obtenido = await _MyDBContext.Estudiantes
+                .Include(x => x.Objeto_Materia)
+                .FirstOrDefaultAsync(x => x.Id_Estudiante == estudiante.Id_Estudiante);
 
             if (Objeto_Obtenido != null)
             {
@@ -38,7 +40,9 @@ namespace Acceso_Datos
         // Manda Todos Los Objetos De La Tabla:
         public async Task<List<Estudiante>> Obtener_Todos()
         {
-            List<Estudiante> Objetos_Obtenidos = await _MyDBContext.Estudiantes.ToListAsync();
+            List<Estudiante> Objetos_Obtenidos = await _MyDBContext.Estudiantes
+                .Include(x => x.Objeto_Materia)
+                .ToListAsync();
 
             return Objetos_Obtenidos;
         }
@@ -91,6 +95,7 @@ namespace Acceso_Datos
                 Objeto_Obtenido.Telefono = estudiante.Telefono;
                 Objeto_Obtenido.Gmail = estudiante.Gmail;
                 Objeto_Obtenido.IdMateriaEnEstudiante = estudiante.IdMateriaEnEstudiante;
+                Objeto_Obtenido.Fotografia= estudiante.Fotografia;
 
                 _MyDBContext.Update(Objeto_Obtenido);
             }

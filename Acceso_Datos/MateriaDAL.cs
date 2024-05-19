@@ -22,7 +22,9 @@ namespace Acceso_Datos
         // Manda Un Objeto Encontrado:
         public async Task<Materia> Obtener_PorId(Materia materia)
         {
-            Materia? Objeto_Obtenido = await _MyDBContext.Materias.FirstOrDefaultAsync(x => x.Id_Materia == materia.Id_Materia);
+            Materia? Objeto_Obtenido = await _MyDBContext.Materias
+                .Include(x => x.Objeto_Profesor)
+                .FirstOrDefaultAsync(x => x.Id_Materia == materia.Id_Materia);
 
             if (Objeto_Obtenido != null)
             {
@@ -30,7 +32,7 @@ namespace Acceso_Datos
             }
             else
             {
-                return new Materia(); 
+                return new Materia();
             }
 
         }
@@ -38,7 +40,9 @@ namespace Acceso_Datos
         // Manda Todos Los Objetos De La Tabla:
         public async Task<List<Materia>> Obtener_Todos()
         {
-            List<Materia> Objetos_Obtenidos = await _MyDBContext.Materias.ToListAsync();
+            List<Materia> Objetos_Obtenidos = await _MyDBContext.Materias
+                .Include(x => x.Objeto_Profesor)
+                .ToListAsync();
 
             return Objetos_Obtenidos;
         }
@@ -81,7 +85,7 @@ namespace Acceso_Datos
         {
             Materia? Objeto_Obtenido = await _MyDBContext.Materias.FirstOrDefaultAsync(x => x.Id_Materia == materia.Id_Materia);
 
-            if(Objeto_Obtenido!=null)
+            if (Objeto_Obtenido != null)
             {
                 // Modififanco Atributos:
                 Objeto_Obtenido.Nombre = materia.Nombre;

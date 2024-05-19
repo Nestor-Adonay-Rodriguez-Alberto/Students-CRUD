@@ -22,7 +22,9 @@ namespace Acceso_Datos
         // Manda Un Objeto Encontrado:
         public async Task<Profesor> Obtener_PorId(Profesor profesor)
         {
-            Profesor? Objeto_Obtenido = await _MyDBContext.Profesores.FirstOrDefaultAsync(x => x.Id_Profesor == profesor.Id_Profesor);
+            Profesor? Objeto_Obtenido = await _MyDBContext.Profesores
+                .Include(x=> x.Objeto_Rol)
+                .FirstOrDefaultAsync(x => x.Id_Profesor == profesor.Id_Profesor);
 
             if (Objeto_Obtenido != null)
             {
@@ -38,7 +40,9 @@ namespace Acceso_Datos
         // Manda Todos Los Objetos De La Tabla:
         public async Task<List<Profesor>> Obtener_Todos()
         {
-            List<Profesor> Objetos_Obtenidos = await _MyDBContext.Profesores.ToListAsync();
+            List<Profesor> Objetos_Obtenidos = await _MyDBContext.Profesores
+                .Include(x=> x.Objeto_Rol)
+                .ToListAsync();
 
             return Objetos_Obtenidos;
         }
