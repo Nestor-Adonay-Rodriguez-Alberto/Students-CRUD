@@ -41,7 +41,7 @@
     <h1>Registro De Profesores</h1><br />
 
     <p>
-        <a asp-action="Create" class="btn btn-primary">Registrar Nuevo</a>
+        <a asp-action="Create" class="btn btn-dark">Registrar Nuevo</a>
     </p>
 
     <div class="table-responsive">
@@ -83,7 +83,7 @@
                             @Html.DisplayFor(modelItem => item.Nombre)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                            @item.FechaNacimiento.ToString("dd-MM-yyyy")
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Telefono)
