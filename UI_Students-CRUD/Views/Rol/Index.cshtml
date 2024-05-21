@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Entidades.Rol>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    /* Estilos personalizados */
+    .table-container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .center-heading {
+        text-align: center;
+    }
+</style>
+
+<div class="container mx-auto">
+    <div class="table-container">
+        <h1 class="center-heading">Registro De Roles</h1>
+        <br />
+
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Registrar Rol</a>
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Nombre De Rol")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+
+                            <td>
+                                <div class="d-flex flex-wrap">
+                                    <div class="btn-group">
+                                        <a asp-action="Edit" asp-route-id="@item.Id_Rol" class="btn btn-primary rounded">Editar</a>
+                                        <a asp-action="Details" asp-route-id="@item.Id_Rol" class="btn btn-secondary rounded">Detalles</a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id_Rol" class="btn btn-danger rounded">Eliminar</a>
+                                    </div>
+                                    <style>
+                                        .btn-group {
+                                            display: flex;
+                                            gap: 5px;
+                                        }
+
+                                        .btn {
+                                            flex: 1;
+                                            border-radius: 5px;
+                                        }
+                                    </style>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
