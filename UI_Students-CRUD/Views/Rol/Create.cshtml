@@ -7,10 +7,10 @@
 <style>
     /* Estilos personalizados */
     .form-container {
-        max-width: 800px;
+        max-width: 400px;
         padding: 20px;
         background-color: #f7f7f7;
-        border-radius: 5px;
+        border-radius: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin: auto;
         margin-top: 20px;
@@ -32,9 +32,7 @@
             font-weight: bold;
         }
 
-        .form-container .btn-primary {
-            margin-right: 10px;
-        }
+        
 </style>
 
 <div class="form-container">
@@ -46,7 +44,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-10">
                 <label class="control-label">NOMBRE:</label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
