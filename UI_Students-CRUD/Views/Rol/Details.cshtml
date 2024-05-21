@@ -4,21 +4,70 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<style>
+    /* Estilos personalizados */
+    .form-container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        margin-top: 20px;
+    }
 
-<div>
-    <h5>Detalles Del Rol</h5>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayName("NOMBRE:")
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-    </dl>
+        .form-container h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .form-container .row {
+            margin-bottom: 10px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+        
+</style>
+
+<div class="form-container">
+    <h1>Detalles</h1><br />
+
+    <div>
+        <h5>Detalles Del Rol</h5>
+        <hr />
+        <dl class="Rol-info">
+            <div class="Rol-info-item">
+                <dt>NOMBRE:</dt>
+                <dd class="col-sm-10" style="overflow: hidden; word-wrap: break-word;">
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+            </div>
+        </dl>
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id_Rol" class="btn btn-primary">EDITAR</a> |
+            <a asp-action="Index" class="btn btn-secondary">CANCELAR</a>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id_Rol" class="btn btn-primary">EDITAR</a> |
-    <a asp-action="Index" class="btn btn-secondary">CANCELAR</a>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
