@@ -70,6 +70,9 @@
                         @Html.DisplayName("AULA")
                     </th>
                     <th>
+                        @Html.DisplayName("Rol en Escuela")
+                    </th>
+                    <th>
                         @Html.DisplayName("FOTOGRAFIA")
                     </th>
                     <th></th>
@@ -83,7 +86,7 @@
                             @Html.DisplayFor(modelItem => item.Nombre)
                         </td>
                         <td>
-                            @item.FechaNacimiento.ToString("dd-MM-yyyy")
+                            @item.FechaNacimiento.ToString("dd/MM/yyyy")
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Telefono)
@@ -101,6 +104,9 @@
                             @Html.DisplayFor(modelItem => item.Aula)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.Objeto_Rol.Nombre)
+                        </td>
+                        <td>
                             @{
                                 // Es La Imagen En Base64
                                 string Imagen_Mostar = "";
@@ -114,6 +120,10 @@
                                 if (Imagen_Mostar.Trim().Length > 0)
                                 {
                                     <img id="VistaImagenProfesor" src="@Imagen_Mostar" style="max-width:100px; max-height:100px" />
+                                }
+                                else
+                                {
+                                    <img id="VistaImagenEmpleado" src="~/img/defecto.jpg" style="max-width:100px; max-height:100px" />
                                 }
                             }
                         </td>
