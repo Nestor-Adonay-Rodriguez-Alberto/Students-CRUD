@@ -4,23 +4,58 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Eliminar</h1><br />
+<style>
+    /* Estilos personalizados */
+    .form-container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        margin-top: 20px;
+    }
 
-<div>
-    <h5>Rol a Eliminar</h5>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayName("NOMBRE:")
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id_Rol" />
-        <input type="submit" value="ELIMINAR" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-secondary">CANCELAR</a>
-    </form>
+        .form-container h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .form-container .row {
+            margin-bottom: 10px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+        .form-container .btn-primary {
+            margin-right: 10px;
+        }
+</style>
+
+<div class="form-container">
+    <h1>Eliminar</h1><br />
+
+    <div>
+        <h5>Rol a Eliminar</h5>
+        <hr />
+        <dl class="Rol-info">
+            <div class="Rol-info-item">
+                <dt>NOMBRE:</dt>
+                <dd class="col-sm-10" style="overflow: hidden; word-wrap: break-word;">
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+            </div>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id_Rol" />
+            <input type="submit" value="ELIMINAR" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-secondary">CANCELAR</a>
+        </form>
+    </div>
 </div>
