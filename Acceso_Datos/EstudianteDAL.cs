@@ -24,6 +24,7 @@ namespace Acceso_Datos
         {
             Estudiante? Objeto_Obtenido = await _MyDBContext.Estudiantes
                 .Include(x => x.Objeto_Materia)
+                .ThenInclude(x=> x.Objeto_Profesor)
                 .FirstOrDefaultAsync(x => x.Id_Estudiante == estudiante.Id_Estudiante);
 
             if (Objeto_Obtenido != null)
@@ -42,6 +43,7 @@ namespace Acceso_Datos
         {
             List<Estudiante> Objetos_Obtenidos = await _MyDBContext.Estudiantes
                 .Include(x => x.Objeto_Materia)
+                .ThenInclude(x => x.Objeto_Profesor)
                 .ToListAsync();
 
             return Objetos_Obtenidos;
