@@ -37,7 +37,7 @@ namespace UI_Students_CRUD.Controllers
         public async Task<ActionResult> Create()
         {
             List<Profesor> Lista_Profesores = await _MateriaBL.Lista_Profesores();
-            ViewData["Lista_Profesores"] = new SelectList(Lista_Profesores, "Id_Materia","Nombre");
+            ViewData["Lista_Profesores"] = new SelectList(Lista_Profesores, "Id_Profesor", "Nombre");
 
             return View();
         }
@@ -57,7 +57,7 @@ namespace UI_Students_CRUD.Controllers
             Materia Objeto_Obtenido = await _MateriaBL.Obtener_PorId(new Materia() { Id_Materia = id });
 
             List<Profesor> Lista_Profesores = await _MateriaBL.Lista_Profesores();
-            ViewData["Lista_Profesores"] = new SelectList(Lista_Profesores, "Id_Materia", "Nombre",Objeto_Obtenido.IdProfesorEnMateria);
+            ViewData["Lista_Profesores"] = new SelectList(Lista_Profesores, "Id_Profesor", "Nombre",Objeto_Obtenido.IdProfesorEnMateria);
 
 
             return View(Objeto_Obtenido);

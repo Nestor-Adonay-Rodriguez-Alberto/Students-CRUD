@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Entidades.Materia>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    /* Estilos Para Cuadro */
+    .form-container {
+        max-width: 900px;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        margin-top: 20px;
+    }
+
+        .form-container h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .form-container .row {
+            margin-bottom: 10px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+</style>
+
+<div class="form-container">
+    <h1>Registro De Materias</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-dark">Registrar Nueva</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("NOMBRE")
+                    </th>
+                    <th>
+                        @Html.DisplayName("HORARIO:")
+                    </th>
+                    <th>
+                        @Html.DisplayName("NOMBRE PROFESOR")
+                    </th>
+                    <th>
+                        @Html.DisplayName("AULA")
+                    </th>
+                    <th>
+                        @Html.DisplayName("FOTO PROFESOR")
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Horario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objeto_Profesor.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objeto_Profesor.Aula)
+                        </td>
+                        <td>
+                            @{
+                                // Es La Imagen En Base64
+                                string Imagen_Mostar = "";
+
+                                if (item.Objeto_Profesor.Fotografia != null && item.Objeto_Profesor.Fotografia.Length > 0)
+                                {
+                                    string Cadena_Imagen = Convert.ToBase64String(item.Objeto_Profesor.Fotografia);
+                                    Imagen_Mostar = "data:image/jpeg;base64," + Cadena_Imagen;
+                                }
+
+                                if (Imagen_Mostar.Trim().Length > 0)
+                                {
+                                    <img src="@Imagen_Mostar" style="max-width:100px; max-height:100px" />
+                                }
+                                else
+                                {
+                                    <img src="~/img/defecto.jpg" style="max-width:100px; max-height:100px" />
+                                }
+                            }
+                        </td>
+
+                        <td>
+                            <div class="d-flex flex-wrap">
+                                <div class="btn-group">
+                                    <a asp-action="Edit" asp-route-id="@item.Id_Materia" class="btn btn-primary rounded">Editar</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id_Materia" class="btn btn-secondary rounded">Detalles</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id_Materia" class="btn btn-danger rounded">Eliminar</a>
+                                </div>
+                                <style>
+                                    .btn-group {
+                                        display: flex;
+                                        gap: 5px;
+                                    }
+
+                                    .btn {
+                                        flex: 1;
+                                        border-radius: 5px;
+                                    }
+                                </style>
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
