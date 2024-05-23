@@ -45,7 +45,7 @@ namespace UI_Students_CRUD.Controllers
             // Colocamos Cantidad Si No Se Coloco Una:
             if(estudiante.Cant_Buscar==0)
             {
-                estudiante.Cant_Buscar = 5;
+                estudiante.Cant_Buscar = 2;
             }
 
             // Los Registros Encontrados Los Mandaremos Con Una Sierta Cantidad No Todos:
