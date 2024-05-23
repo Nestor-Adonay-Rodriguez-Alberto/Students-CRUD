@@ -3,6 +3,7 @@ using Logica_Negocio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace UI_Students_CRUD.Controllers
 {
@@ -18,11 +19,39 @@ namespace UI_Students_CRUD.Controllers
         }
 
         // Manda Todos Los Registros De La Tabla:
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(Estudiante estudiante)
         {
+            List<Materia> Lista_Materias = await _EstudianteBL.Lista_Materias();
+            Lista_Materias.Insert(0, new Materia { Id_Materia = 0, Nombre = "Seleccionar..." });
+            ViewData["Lista_Materias"] = new SelectList(Lista_Materias, "Id_Materia", "Nombre");
+
             List<Estudiante> Objetos_Obtenidos = await _EstudianteBL.Obtener_Todos();
 
-            return View(Objetos_Obtenidos);
+            // Para Hacer Consultas
+            IQueryable<Estudiante> Query_Objetos = Objetos_Obtenidos.AsQueryable();
+
+            // Agrupamos Por Carrera:
+            if (!string.IsNullOrWhiteSpace(estudiante.GradoAcademico))
+            {
+                Query_Objetos = Query_Objetos.Where(s => s.GradoAcademico.Contains(estudiante.GradoAcademico));
+            }
+
+            // Agrupamos Por Materia:
+            if (estudiante.IdMateriaEnEstudiante!=0)
+            {
+                Query_Objetos = Query_Objetos.Where(s => s.IdMateriaEnEstudiante==estudiante.IdMateriaEnEstudiante);
+            }
+
+            // Colocamos Cantidad Si No Se Coloco Una:
+            if(estudiante.Cant_Buscar==0)
+            {
+                estudiante.Cant_Buscar = 5;
+            }
+
+            // Los Registros Encontrados Los Mandaremos Con Una Sierta Cantidad No Todos:
+            Query_Objetos = Query_Objetos.Take(estudiante.Cant_Buscar);
+
+            return View(Query_Objetos);
         }
 
         // Manda Un Objeto Encontrado De La Tabla:

@@ -32,6 +32,9 @@ namespace Entidades
 
         public byte[]? Fotografia {  get; set; }
 
+        [NotMapped] 
+        public int Cant_Buscar { get; set; }
+
 
 
         // Referencia Tabla Materia:
