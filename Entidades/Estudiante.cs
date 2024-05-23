@@ -27,6 +27,7 @@ namespace Entidades
         public string Telefono { get; set; }
 
         [Required(ErrorMessage ="Es Obligatorio El Email")]
+        [DataType(DataType.EmailAddress)]
         public string Gmail { get; set; }
 
         public byte[]? Fotografia {  get; set; }
